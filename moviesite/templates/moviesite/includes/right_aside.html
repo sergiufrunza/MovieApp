@@ -1,0 +1,35 @@
+{% load static %}
+
+
+<div class="right_aside_container">
+    <div class="profile_data" id="profile_data">
+        <img src="{% static 'moviesite/img/profile.jpg' %}" alt="profile" class="profile_photo">
+        <div class="profile_info">
+            <span class="name_user">Sergiu Frunza</span>
+            <span class="email_user">sergiu.frunza120@gmail.com</span>
+        </div>
+    </div>
+    <div id="container_burger">
+        <div class="burger" id="burger">
+        </div>
+    </div>
+    <div class="genre_container" id="genre_container">
+        {% for gen in genres %}
+            <a href="{{ gen.get_absolute_url }}" class="genre" id="genre__{{ gen.pk }}">
+            <span class="genre_name">{{ gen.name }}</span>
+{#                <span class="icon_genre" id="icon_add_{{ gen.pk }}" style="display: block">#}
+{#                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="12" height="12" fill="none">#}
+{#                            <polygon points="42,20 22,20 22,0 20,0 20,20 0,20 0,22 20,22 20,42 22,42 22,22 42,22 " fill="currentColor"/>#}
+{#                        </svg>#}
+{#                </span>#}
+                <span class="icon_genre">
+                    <svg width="12px" height="12px" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M43 11L16.875 37L5 25.1818" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </a>
+
+        {% endfor %}
+
+    </div>
+</div>
