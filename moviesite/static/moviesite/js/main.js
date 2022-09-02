@@ -5,6 +5,45 @@ const Burger = document.getElementById("burger");
 const RightAside = document.getElementById("right_aside");
 const ProfileData = document.getElementById("profile_data");
 const GenreContainer = document.getElementById("genre_container");
+const FavoriteContainer = document.getElementById("favorite_container");
+const LoginContainer = document.getElementById("login_container");
+const RightAsideContainer = document.getElementById("right_aside_container");
+
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+window.onload = function () {
+    const AddFavorite = document.getElementsByClassName("add_favorite");
+    for (let el of AddFavorite) {
+        el.onclick = function(){
+
+    let slug = el.dataset.slug
+    el.style.display = "none"
+    fetch('api/addfavorite/'+slug+'/', {
+        method: "PUT",
+        headers: {
+        "X-CSRFToken": getCookie("csrftoken"),
+            },
+
+    });
+
+    }}}
+
+
 
 
 
@@ -13,8 +52,11 @@ ContainerBurger.onclick = function click() {
         if (RightAside.style.width === "350px") {
             // LeftMenuContainer.style.width = null;
             RightAside.style.width = "75px";
-            ProfileData.style.display = "none"
-            GenreContainer.style.display = "none"
+            RightAsideContainer.style.display = "none"
+            // ProfileData.style.display = "none"
+            // GenreContainer.style.display = "none"
+            // FavoriteContainer.style.display = "none"
+            // LoginContainer.style.display = "none"
             // ProfileFoto.style.width = "46px"
             // ProfileFoto.style.height = "46px"
             // ProfileFoto.style.borderColor = "#0339fa"
@@ -29,8 +71,11 @@ ContainerBurger.onclick = function click() {
         } else {
             // LeftMenuContainer.style.width = "100%";
             RightAside.style.width = "350px";
-            ProfileData.style.display = "flex"
-            GenreContainer.style.display = "grid"
+            RightAsideContainer.style.display = "flex"
+            // ProfileData.style.display = "flex"
+            // GenreContainer.style.display = "block"
+            // FavoriteContainer.style.display = "block"
+            // LoginContainer.style.display = "block"
             // ProfileFoto.style.width = "75px"
             // ProfileFoto.style.height = "75px"
             // ProfileFoto.style.borderColor = "#4d5665"

@@ -17,8 +17,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from moviesite.views import *
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
+    path('api/addfavorite/<slug:slug_favorite>/', csrf_exempt(AddFavoriteAPI.as_view())),
     path('admin/', admin.site.urls),
     path('', include('moviesite.urls')),
 ]

@@ -26,7 +26,7 @@
     </div>
     </content>
 
-<aside class="right_aside" id="right_aside">
+<aside class="right_aside" id="right_aside" {% if request.user.is_authenticated %} style="width: 350px" {% endif %}>
     {% include "moviesite/includes/right_aside.html" %}
 </aside>
 </div>
@@ -34,5 +34,6 @@
         {% include "moviesite/includes/footer.html" %}
     </footer>
 </body>
+
 <script src="{% static 'moviesite/js/main.js' %}"></script>
 </html>

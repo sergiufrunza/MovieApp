@@ -10,6 +10,7 @@ class CategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 
+admin.site.register(UserProfile)
 admin.site.register(Movie, MovieAdmin)
 admin.site.register(Countries)
 admin.site.register(Categories, CategoriesAdmin)

@@ -1,10 +1,10 @@
-import os
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
-from .utils import *
+from .aux_def import *
 
 
 class Countries(models.Model):
@@ -66,22 +66,6 @@ class Movie(models.Model):
         return reverse('movie', kwargs={'slug_movie': self.slug})
 
 
-# class ActorsMovie(models.Model):
-#     actor_id = models.ForeignKey(Actors, on_delete=models.CASCADE)
-#     movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return self.id
-#
-#
-# class GenreMovie(models.Model):
-#     genre_id = models.ForeignKey(Categories, on_delete=models.CASCADE)
-#     movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return self.id
-
-
 class MovieData(models.Model):
     movie = models.OneToOneField(Movie, on_delete=models.PROTECT)
     color = models.CharField(max_length=8, blank=True)
@@ -93,13 +77,48 @@ class MovieData(models.Model):
         return self.movie.slug
 
     def save(self, *args, **kwargs):
-        #### get dominant color with art image ###
+        # get dominant color with art image
         path_name = fr'moviesite\static\moviesite\buffer\{self.movie.name}.png'
         self.color = dominant_color(self.movie.art.path, path_name)
         self.duration = time_movies(self.movie.movie.path)
         os.remove(path_name)
         ###
         super().save()
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.PROTECT, null=True)
+    avatar = models.ImageField(upload_to="avatar/%Y/%m/%d", default='placeholder.png')
+    user_name = models.CharField(max_length=255)
+    favorite = models.ManyToManyField(Movie, symmetrical=None)
+
+    def __str__(self):
+        return self.user_name
+
+    def save(self, *args, **kwargs):
+        super().save()
+        img = Image.open(self.avatar.path)
+        img_new = crop_center(img, min(img.size))
+        img_new.save(self.avatar.path)
+
+    def get_absolute_url_profile(self):
+        return reverse('user_profile', kwargs={'pk': self.pk})
+
+    def get_absolute_url_favorite(self):
+        return reverse('favorite' ,kwargs={'pk': self.pk})
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.userprofile.user_name = "User" + str(instance.userprofile.pk)
+    instance.userprofile.save()
+
 
 
 @receiver(post_save, sender=Movie)

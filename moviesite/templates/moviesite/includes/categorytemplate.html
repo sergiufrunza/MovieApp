@@ -1,6 +1,5 @@
 <div class="head_block">
     <span class="block_name">Category {{ title }}</span>
-{#    <a href="#" class="block_all">See all ></a>#}
 </div>
 {% for m in movies %}
 <div class="movie_container">
@@ -21,3 +20,18 @@
 </div>
     <div class="delimiter"></div>
 {% endfor %}
+{#    {% if is_paginated %}#}
+{#        <div class="pagination">#}
+{#            <span class="page-links">#}
+{#                {% if page_obj.has_previous %}#}
+{#                    <a href="/cars?page={{ page_obj.previous_page_number }}">previous</a>#}
+{#                {% endif %}#}
+{#                <span class="page-current">#}
+{#                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
+{#                </span>#}
+{#                {% if page_obj.has_next %}#}
+{#                    <a href="/cars?page={{ page_obj.next_page_number }}">next</a>#}
+{#                {% endif %}#}
+{#            </span>#}
+{#        </div>#}
+{#    {% endif %}#}
