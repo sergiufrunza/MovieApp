@@ -3,7 +3,8 @@
 </div>
 {% for m in movies %}
 <div class="movie_container">
-    <a href="{{ m.get_absolute_url }}" class="movie_img_container" style ="background-image: linear-gradient(rgba(21, 19, 24, 0), rgba(21, 19, 24, 0.7)), url('{{m.cover.url}}')">
+    <a href="{{ m.get_absolute_url }}" class="movie_img_container" style ="background-image: linear-gradient(rgba(21, 19, 24, 0), rgba(21, 19, 24, 0.7)), url('{{m.cover.url}}')"
+       onclick="checkscroll()">
 
     </a>
     <div class="movie_data_container">
