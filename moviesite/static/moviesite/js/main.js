@@ -9,7 +9,7 @@ const FavoriteContainer = document.getElementById("favorite_container");
 const LoginContainer = document.getElementById("login_container");
 const RightAsideContainer = document.getElementById("right_aside_container");
 const ContentSite = document.getElementById("content")
-
+const Eyepass = document.getElementById("password_eye")
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -42,6 +42,16 @@ window.onload = function () {
             });
 
         }
+    }
+}
+function Checkinputtype(el) {
+    elparent = el.parentNode.querySelector("#password")
+    if (elparent.type === "password") {
+        el.style.color = "var(--accent)"
+        elparent.type = "text"
+    } else {
+        el.style.color = "var(--secondary-color)"
+        elparent.type = "password"
     }
 }
 
