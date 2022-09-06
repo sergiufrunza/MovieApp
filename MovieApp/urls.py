@@ -21,7 +21,7 @@ from moviesite.views import *
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
-    path('api/addfavorite/<slug:slug_favorite>/', csrf_exempt(AddFavoriteAPI.as_view())),
+    path('api/favorite/<slug:slug_favorite>/', csrf_exempt(FavoriteAPI.as_view())),
     path('admin/', admin.site.urls),
     path('', include('moviesite.urls')),
 ]

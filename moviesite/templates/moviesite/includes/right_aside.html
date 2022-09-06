@@ -7,13 +7,13 @@
 <div class="right_aside_container" id="right_aside_container" {% if not request.user.is_authenticated %}
      style="margin-top:50px" {% endif %} {% if request.user.is_authenticated %} style="display: flex" {% endif %}>
     {% if request.user.is_authenticated %}
-        <div class="profile_data" id="profile_data">
+        <a href="{{ request.user.userprofile.get_absolute_url_profile }}" class="profile_data" id="profile_data">
             <img src="{{ request.user.userprofile.avatar.url }}" alt="profile" class="profile_photo">
             <div class="profile_info">
                 <span class="name_user">{{ request.user.userprofile.user_name }}</span>
                 <span class="email_user">{{ request.user.email }}</span>
             </div>
-        </div>
+        </a>
     {% endif %}
 
     <div class="genre_container" id="genre_container">
@@ -22,7 +22,7 @@
         </div>
         <div class="genre_wrapper">
             {% for gen in genres %}
-                <a href="{{ gen.get_absolute_url }}" class="genre" id="genre__{{ gen.pk }}">
+                <a href="{{ gen.get_absolute_url }}" class="genre" id="genre__{{ gen.pk }}" {% if category == gen.slug %}style="background: #E52327"{% endif %}>
                     <span class="genre_name">{{ gen.name }}</span>
                     <span class="icon_genre">
                     <svg width="12px" height="12px" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">

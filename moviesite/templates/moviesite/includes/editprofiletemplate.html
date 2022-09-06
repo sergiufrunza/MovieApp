@@ -1,0 +1,18 @@
+{% load static %}
+
+    <div class="form_wrapper">
+    <form method="post" class="form" enctype="multipart/form-data">
+        <div class="form_logo">
+        <img src="{% static 'favicon.ico' %}" alt="" width="50px" height="50px">
+    </div>
+    {% csrf_token %}
+    <div class="form_error">{{ profile_form.non_field_errors }}</div>
+    {% for f in form %}
+        <div class="form_items" ><label class="{% if f.id_for_label == 'id_avatar' %}form_label_upload{% else %}form_label{% endif %}" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</div>
+            <div class="form_error">{{ f.errors }}</div>
+
+    {% endfor %}
+
+    <button type="submit" class="btn btn_submit_form">Save</button>
+    </form>
+</div>

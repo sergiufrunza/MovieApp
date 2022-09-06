@@ -17,7 +17,7 @@
                     <a href="{{ m.movie.get_absolute_url }}" class="button_movie">Watch now</a>
                     {% if request.user.is_authenticated %}
                         {% if m.movie not in request.user.userprofile.favorite.all %}
-                            <span data-slug="{{ m.movie.slug }}" class="button_ad_movie add_favorite">
+                            <span data-slug="{{ m.movie.slug }}" class="button_ad_movie" onclick="AddFavorite(this)">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="14" height="14" fill="none">
                                     <polygon points="42,20 22,20 22,0 20,0 20,20 0,20 0,22 20,22 20,42 22,42 22,22 42,22 " fill="currentColor"/>
                                 </svg>
@@ -49,7 +49,7 @@
                         <a href="{{ m.movie.get_absolute_url }}" class="button_movie_top">Watch now</a>
                         {% if request.user.is_authenticated %}
                             {% if m.movie not in request.user.userprofile.favorite.all %}
-                                <span data-slug="{{ m.movie.slug }}" class="button_ad_movie add_favorite">
+                                <span data-slug="{{ m.movie.slug }}" class="button_ad_movie" onclick="AddFavorite(this)">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="14" height="14" fill="none">
             <polygon points="42,20 22,20 22,0 20,0 20,20 0,20 0,22 20,22 20,42 22,42 22,22 42,22 " fill="currentColor"/>
         </svg>

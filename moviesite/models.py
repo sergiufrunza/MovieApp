@@ -1,3 +1,4 @@
+from django.core.validators import EmailValidator
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -88,20 +89,24 @@ class MovieData(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User ,on_delete=models.PROTECT ,null=True)
     avatar = models.ImageField(upload_to="avatar/%Y/%m/%d" ,default='placeholder.png')
-    user_name = models.CharField(max_length=255)
+    user_name = models.CharField(max_length=255, unique=True)
+    email = models.CharField(max_length=255)
     favorite = models.ManyToManyField(Movie ,symmetrical=None)
 
     def __str__(self):
         return self.user_name
 
     def save(self ,*args ,**kwargs):
-        super().save()
-        img = Image.open(self.avatar.path)
-        img_new = crop_center(img ,min(img.size))
-        img_new.save(self.avatar.path)
+            super().save()
+            img = Image.open(self.avatar.path)
+            img_new = crop_center(img ,min(img.size))
+            img_new.save(self.avatar.path)
 
     def get_absolute_url_profile(self):
         return reverse('user_profile' ,kwargs={'pk': self.pk})
+
+    def get_absolute_url_profile_edit(self):
+        return reverse('edit_profile' ,kwargs={'pk': self.pk})
 
     def get_absolute_url_favorite(self):
         return reverse('favorite' ,kwargs={'pk': self.pk})
@@ -115,6 +120,7 @@ def create_user_profile(sender ,instance ,created ,**kwargs):
 
 @receiver(post_save ,sender=User)
 def save_user_profile(sender ,instance ,**kwargs):
+    instance.userprofile.email = instance.email
     instance.userprofile.user_name = "User" + str(instance.userprofile.pk)
     instance.userprofile.save()
 

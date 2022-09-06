@@ -1,7 +1,19 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm ,AuthenticationForm
+from django.core.validators import validate_email
 from django.contrib.auth.forms import User
 from .models import *
+
+
+class EditFormProfile(forms.ModelForm):
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}), validators=[validate_email])
+    user_name = forms.CharField(label='User Name', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    avatar = forms.ImageField(label='Profile Photo', widget=forms.FileInput(attrs={'class': 'avatar_in'}))
+    field_order = ['user_name', 'email' , 'avatar']
+
+    class Meta:
+        model = UserProfile
+        fields = ['user_name', 'email' , 'avatar']
 
 
 class RegisterUserForm(UserCreationForm):
@@ -27,34 +39,3 @@ class AuthForm(AuthenticationForm):
     class Meta:
         model = User
         fields = {'username' ,'password'}
-
-#
-# class ProfileDate(forms.ModelForm):
-#     user_name = forms.CharField(label='User Name', widget=forms.TextInput(attrs={'class': 'form-input'}))
-#     avatar = forms.ImageField(label='Profile Photo', widget=forms.FileInput(attrs={'class': 'avatar_in'}))
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['user_status'].empty_label = "Default"
-#         self.fields['user_status'].label = "User Status"
-#         self.fields['user_status'].widget.attrs = {'class': 'form-select'}
-#
-#
-#
-#     class Meta:
-#         model = UserProfile
-#         fields = ['user_name', 'user_status', 'avatar']
-
-# class AddMovies(forms.ModelForm):
-#     name = forms.CharField(max_length=100)
-#     description = forms.CharField(widget=forms.Textarea(attrs={'col': 60, 'row': 60}))
-#     slug = forms.SlugField(max_length=100)
-#     cover = forms.ImageField()
-#     movie = forms.FileField()
-#     art = forms.ImageField()
-#     year = forms.ModelChoiceField(queryset=Years.objects.all())
-#     country = forms.ModelChoiceField(queryset=Countries.objects.all())
-#     category = forms.ModelChoiceField(queryset=Categories.objects.all())
-#     film_director = forms.ModelChoiceField(queryset=FilmDirectors.objects.all())
-#
-#     class Meta:
-#         model = Movie

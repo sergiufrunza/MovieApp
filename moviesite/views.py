@@ -2,7 +2,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.views.generic import DetailView ,ListView ,CreateView ,TemplateView
+from django.views.generic import DetailView ,ListView ,CreateView ,TemplateView, UpdateView
 from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.shortcuts import *
@@ -56,6 +56,7 @@ class CategoriesView(DataMixin ,ListView):
 
     def get_context_data(self ,* ,object_list=None ,**kwargs):
         context = super().get_context_data(**kwargs)
+        context['category'] = self.kwargs['slug_cat']
         mix = self.get_user_context(title=get_object_or_404(Categories ,slug=self.kwargs['slug_cat']).name)
         return dict(list(context.items()) + list(mix.items()))
 
@@ -113,16 +114,47 @@ class RegisterUser(DataMixin ,CreateView):
         mix = self.get_user_context(title="Register")
         return dict(list(context.items()) + list(mix.items()))
 
+    def form_valid(self, form):
+        valid = super(RegisterUser, self).form_valid(form)
+        login(self.request, self.object)
+        return valid
+
     def get_success_url(self):
-        login(self.request ,self.object)
         return self.request.GET["next"]
 
 
-class AddFavoriteAPI(APIView):
+class EditUserProfile(DataMixin ,UpdateView):
+    model = UserProfile
+    form_class = EditFormProfile
+    template_name = 'moviesite/editprofile.html'
+
+    def get_context_data(self ,* ,object_list=None ,**kwargs):
+        context = super().get_context_data(**kwargs)
+        mix = self.get_user_context(title="EditProfile")
+        return dict(list(context.items()) + list(mix.items()))
+
+    def form_valid(self, form):
+        valid = super(EditUserProfile, self).form_valid(form)
+        self.object.save()
+        return valid
+
+    def get_success_url(self):
+        return self.request.GET["next"]
+
+
+
+
+class FavoriteAPI(APIView):
     def put(self ,request ,**kwargs):
         slug = self.kwargs["slug_favorite"]
         movie = get_object_or_404(Movie ,slug=slug)
         self.request.user.userprofile.favorite.add(movie)
+        return JsonResponse({})
+
+    def delete(self ,request ,**kwargs):
+        slug = self.kwargs["slug_favorite"]
+        movie = get_object_or_404(Movie ,slug=slug)
+        self.request.user.userprofile.favorite.remove(movie)
         return JsonResponse({})
 
 

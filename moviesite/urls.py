@@ -9,5 +9,6 @@ urlpatterns = [
     path('favorite/<int:pk>/' ,FavoriteView.as_view() ,name='favorite') ,
     path('user/<int:pk>/' ,ProfileUser.as_view() ,name="user_profile") ,
     path('login/' ,LoginUser.as_view() ,name="login") ,
-    path('register/' ,RegisterUser.as_view() ,name="registrate")
+    path('register/' ,RegisterUser.as_view() ,name="registrate"),
+    path('editprofile/<int:pk>/', EditUserProfile.as_view(), name="edit_profile")
 ]
