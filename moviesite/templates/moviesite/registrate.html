@@ -1,0 +1,26 @@
+{% extends "moviesite/main.html" %}
+ {% load static %}
+{% block content %}
+        <div class="form_wrapper">
+    <form class="form" method="post">
+    {% csrf_token %}
+    <div class="form_logo">
+        <img src="{% static 'favicon.ico' %}" alt="" width="50px" height="50px">
+    </div>
+    <div class="form_error">{{ form.non_field_errors }}</div>
+    {% for f in form %}
+        <div class="form_items" ><label class="form_label" for="{{ f.id_for_label }}">
+            {{ f.label }}
+        </label>
+            {{ f }}
+            <span class="form_error">{{ f.errors }}</span>
+            {% if f.id_for_label == "password" %}
+            <button type="button" id="password_eye" onclick="Checkinputtype(this)">👁</button>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn_submit_form">Sing In</button>
+
+    </form>
+        </div>
+{% endblock %}

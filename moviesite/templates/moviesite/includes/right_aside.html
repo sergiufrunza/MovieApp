@@ -1,0 +1,67 @@
+{% load static %}
+
+<div id="container_burger">
+    <div {% if request.user.is_authenticated %} class="burger_active" {% else %} class="burger" {% endif %} id="burger">
+    </div>
+</div>
+<div class="right_aside_container" id="right_aside_container" {% if not request.user.is_authenticated %}
+     style="margin-top:50px" {% endif %} {% if request.user.is_authenticated %} style="display: flex" {% endif %}>
+    {% if request.user.is_authenticated %}
+        <a href="{{ request.user.userprofile.get_absolute_url_profile }}" class="profile_data" id="profile_data">
+            <img src="{{ request.user.userprofile.avatar.url }}" alt="profile" class="profile_photo">
+            <div class="profile_info">
+                <span class="name_user">{{ request.user.userprofile.user_name }}</span>
+                <span class="email_user">{{ request.user.email }}</span>
+            </div>
+        </a>
+    {% endif %}
+
+    <div class="genre_container" id="genre_container">
+        <div class="head_block_aside">
+            <span class="block_name_aside">GENRE</span>
+        </div>
+        <div class="genre_wrapper">
+            {% for gen in genres %}
+                <a href="{{ gen.get_absolute_url }}" class="genre" id="genre__{{ gen.pk }}" {% if category == gen.slug %}style="background: #E52327"{% endif %}>
+                    <span class="genre_name">{{ gen.name }}</span>
+                    <span class="icon_genre">
+                    <svg width="12px" height="12px" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M43 11L16.875 37L5 25.1818" stroke="currentColor" stroke-width="4"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                </a>
+
+            {% endfor %}
+        </div>
+    </div>
+    {% if request.user.is_authenticated %}
+        <div class="favorite_container" id="favorite_container">
+            <div class="head_block_aside">
+                <span class="block_name_aside">FAVORITE</span>
+            </div>
+            <div class="favorite_wrapper">
+                {% for favorit in request.user.userprofile.favorite.all %}
+                    {% if forloop.counter <= 3 %}
+                        <a class="favorite" href="{{ favorit.get_absolute_url }}"
+                           style="background-image: linear-gradient(180deg, transparent, {{ favorit.moviedata.color }}80 80%), url('{{ favorit.cover.url }}')"></a>
+                    {% endif %}
+                {% endfor %}
+                <a class="see_all_favorite" href="{{ request.user.userprofile.get_absolute_url_favorite }}">See All</a>
+
+            </div>
+        </div>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+
+        <a class="button_log" href="{% url 'logout' %}?next={{ request.path }}">logout</a>
+
+    {% else %}
+        <div class="login_container" id="login_container">
+            <div class="login_wrapper">
+                <a class="button_log" href="{% url 'login' %}?next={{ request.path }}">login</a>
+                <a class="button_log" href="{% url 'registrate' %}?next={{ request.path }}">registrate</a>
+            </div>
+        </div>
+    {% endif %}
+</div>

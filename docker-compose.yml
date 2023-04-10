@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+ web:
+  build:
+   context: ./
+  ports:
+   - "80:8000"

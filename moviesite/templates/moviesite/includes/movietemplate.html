@@ -1,0 +1,16 @@
+<div class="container_art"
+     style="background-image:linear-gradient(-110deg, transparent, {{ movie.moviedata.color }} 65%), url('{{ movie.art.url }}')">
+    <div class="left_movie_info">
+        <span class="name_movie_preview">{{ movie.name }}</span>
+        <span class="year_movie_preview">{{ movie.year }}</span>
+        <p class="description_movie_preview">{{ movie.description }}</p>
+        <span class="actors_movie_preview">Actors: {% for d in movie.actors.all %}
+            {{ d.name|add:" | " }}  {% endfor %}</span>
+        <span class="director_movie_preview" style="color:{{ movie.color }}">Director:
+            {% for d in movie.film_director.all %} {{ d.name|add:" | " }} {% endfor %}</span>
+
+    </div>
+    <div class="right_movie_info">
+
+    </div>
+</div>

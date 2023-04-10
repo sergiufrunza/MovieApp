@@ -1,0 +1,33 @@
+<div class="head_block">
+    <span class="block_name">Favorite {{ request.user.userprofile.user_name }}</span>
+</div>
+{% for m in movies %}
+    <div class="movie_container">
+    <div class="movie_wrapper">
+        <a href="{{ m.get_absolute_url }} " class="favorite"
+           style="background-image: linear-gradient(rgba(21, 19, 24, 0), rgba(21, 19, 24, 0.7)), url('{{ m.cover.url }}');"
+           onclick="checkscroll()">
+
+        </a>
+                    <div class="favorite_card" style="justify-content: end">
+                                        <span data-slug="{{ m.slug }}" class="button_delete_movie"  onclick="DeleteFavorite(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none">
+                                    <polygon points="24 1.414 22.586 0 12 10.586 1.414 0 0 1.414 10.586 12 0 22.586 1.414 24 12 13.414 22.586 24 24 22.586 13.414 12 24 1.414" fill="currentColor"/>
+                                </svg>
+                            </span>
+</div>
+    </div>
+        <div class="movie_data_container">
+            <span class="name_movie">{{ m.name }}</span>
+            <p class="description_movie">{{ m.description|truncatewords:50 }}</p>
+            <span class="director_movie">Director: {% for direc in m.film_director.all %}
+                {{ direc.name }} {% endfor %}</span>
+            <span class="actors_movie">Actors: {% for act in m.actors.all %} {{ act.name }}, {% endfor %}</span>
+            <span class="year_movie">{{ m.year }}</span>
+            <span class="rating_movie">{{ m.moviedata.rating }}</span>
+
+
+        </div>
+    </div>
+    <div class="delimiter"></div>
+{% endfor %}

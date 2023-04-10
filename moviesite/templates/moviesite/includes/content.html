@@ -1,0 +1,66 @@
+<div class="head_block">
+    <span class="block_name">Trending movies</span>
+    <a href="#" class="block_all">See all ></a>
+</div>
+<div class="trending_movies" id="scroll1">
+    {% for m in movies %}
+        <div class="movie_cover"
+             style="background-image: linear-gradient(rgba(21, 19, 24, 0), rgba(21, 19, 24, 0.7)), url('{{ m.movie.cover.url }}')">
+            <div class="movie_info_card">
+                <div class="movie_left">
+                    <span class="name_movie">{{ m.movie.name }}</span>
+                    <span class="year_movie">{{ m.movie.year }}</span>
+                    <span class="movie_rating">{{ m.rating }} rating</span>
+
+                </div>
+                <div class="movie_right">
+                    <a href="{{ m.movie.get_absolute_url }}" class="button_movie">Watch now</a>
+                    {% if request.user.is_authenticated %}
+                        {% if m.movie not in request.user.userprofile.favorite.all %}
+                            <span data-slug="{{ m.movie.slug }}" class="button_ad_movie" onclick="AddFavorite(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="14" height="14" fill="none">
+                                    <polygon points="42,20 22,20 22,0 20,0 20,20 0,20 0,22 20,22 20,42 22,42 22,22 42,22 " fill="currentColor"/>
+                                </svg>
+                            </span>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+<div class="head_block">
+    <span class="block_name rating">Top rated</span>
+    <a href="#" class="block_all">See all ></a>
+</div>
+<div class="trending_movies" id="scroll2">
+    {% for m in top %}
+        <div class="movie_cover_top"
+             style="background-image: linear-gradient(rgba(21, 19, 24, 0), rgba(21, 19, 24, 0.7)), url('{{ m.movie.cover.url }}')">
+            <div class="movie_info_card">
+                <div class="movie_info">
+                    <span class="movie_rating_top">{{ m.rating }}</span>
+                    <span class="name_movie_top">{{ m.movie.name|truncatewords:2 }}</span>
+                    <span class="year_movie_top">{{ m.movie.year }}</span>
+                    <div class="movie_info_button">
+                        <a href="{{ m.movie.get_absolute_url }}" class="button_movie_top">Watch now</a>
+                        {% if request.user.is_authenticated %}
+                            {% if m.movie not in request.user.userprofile.favorite.all %}
+                                <span data-slug="{{ m.movie.slug }}" class="button_ad_movie" onclick="AddFavorite(this)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="14" height="14" fill="none">
+            <polygon points="42,20 22,20 22,0 20,0 20,20 0,20 0,22 20,22 20,42 22,42 22,22 42,22 " fill="currentColor"/>
+        </svg>
+    </span>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+

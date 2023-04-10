@@ -1,0 +1,48 @@
+
+    <div class="profile_wrapper">
+        <div class="profile_content">
+        <div class="left_content_profile">
+            <img class="img_profile_user" src="{{user.avatar.url}}" alt="">
+
+    </div>
+            <div class="right_content_profile">
+            <div class="info_profile_user">
+                <span class="user_name_profile">Name: {{ user.user_name }} </span>
+                <span class="user_email_profile">Email: {{ user.user.email }}</span>
+                <a href="{{ request.user.userprofile.get_absolute_url_profile_edit }}?next={{ request.path }}" class="btn_profile">Edit Profile</a>
+            </div>
+            </div>
+        </div>
+            <div class="user_favorite">
+                    <div class="favorite_container">
+            <div class="head_block_aside">
+                <span class="block_name_aside">FAVORITE</span>
+            </div>
+            <div class="favorite_wrapper_profile">
+                {% for favorit in user.favorite.all %}
+                    {% if forloop.counter <= 5 %}
+                        <div class="movie_favorite_wrapper">
+                        <a href="{{ favorit.get_absolute_url }}" class="favorite"
+                           style="background-image: linear-gradient(180deg, transparent,
+                                   {{ favorit.moviedata.color }}80 80%), url('{{ favorit.cover.url }}');">
+                        </a>
+                            <div class="favorite_card">
+                            <span class="favorite_name">{{ favorit.name|truncatewords:2 }}</span>
+                            <span data-slug="{{ favorit.slug }}" class="button_delete_movie" onclick="DeleteFavorite(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none">
+                                    <polygon points="24 1.414 22.586 0 12 10.586 1.414 0 0 1.414 10.586 12 0 22.586 1.414 24 12 13.414 22.586 24 24 22.586 13.414 12 24 1.414" fill="currentColor"/>
+                                </svg>
+                            </span>
+                        </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <a class="see_all_favorite" href="{{ request.user.userprofile.get_absolute_url_favorite }}" style="background: #19181E">See All</a>
+
+            </div>
+        </div>
+            </div>
+
+    </div>
+
+

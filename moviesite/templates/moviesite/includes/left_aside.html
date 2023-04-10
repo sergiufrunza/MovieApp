@@ -1,0 +1,17 @@
+{% load static %}
+<div class="logo"><a href=" {% url 'main_page' %}"><img src="{% static 'moviesite/img/movie logo.svg' %}" alt=""
+                                                        class="logo_img"></a></div>
+<div class="provider_container">
+    <ul class="provider_ul">
+        <li class="provider"><a href="#"><img src="{% static 'moviesite/img/netflix.png' %}" alt=""
+                                              class="img_provider"></a></li>
+        <li class="provider"><a href="#"><img src="{% static 'moviesite/img/hulu.png' %}" alt=""
+                                              class="img_provider"></a></li>
+        <li class="provider"><a href="#"><img src="{% static 'moviesite/img/aple_tv.png' %}" alt=""
+                                              class="img_provider"></a></li>
+        <li class="provider"><a href="#"><img src="{% static 'moviesite/img/disney.png' %}" alt="" class="img_provider"></a>
+        </li>
+        <li class="provider"><a href="#"><img src="{% static 'moviesite/img/hbo.png' %}" alt=""
+                                              class="img_provider"></a></li>
+    </ul>
+</div>

@@ -1,0 +1,38 @@
+<div class="head_block">
+    <span class="block_name">Category {{ title }}</span>
+</div>
+{% for m in movies %}
+<div class="movie_container">
+    <a href="{{ m.get_absolute_url }}" class="movie_img_container" style ="background-image: linear-gradient(rgba(21, 19, 24, 0), rgba(21, 19, 24, 0.7)), url('{{m.cover.url}}')"
+       onclick="checkscroll()">
+
+    </a>
+    <div class="movie_data_container">
+        <span class="name_movie">{{ m.name }}</span>
+        <p class="description_movie">{{ m.description|truncatewords:50}}</p>
+        <span class="director_movie" >Director: {% for direc in m.film_director.all %} {{ direc.name }} {% endfor %}</span>
+        <span class="actors_movie" >Actors: {% for act in m.actors.all %} {{ act.name }}, {% endfor %}</span>
+        <span class="year_movie">{{ m.year }}</span>
+        <span class="rating_movie">{{ m.moviedata.rating }}</span>
+
+
+
+    </div>
+</div>
+    <div class="delimiter"></div>
+{% endfor %}
+{#    {% if is_paginated %}#}
+{#        <div class="pagination">#}
+{#            <span class="page-links">#}
+{#                {% if page_obj.has_previous %}#}
+{#                    <a href="/cars?page={{ page_obj.previous_page_number }}">previous</a>#}
+{#                {% endif %}#}
+{#                <span class="page-current">#}
+{#                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.#}
+{#                </span>#}
+{#                {% if page_obj.has_next %}#}
+{#                    <a href="/cars?page={{ page_obj.next_page_number }}">next</a>#}
+{#                {% endif %}#}
+{#            </span>#}
+{#        </div>#}
+{#    {% endif %}#}
