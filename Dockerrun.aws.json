@@ -1,18 +1,12 @@
 {
-  "AWSEBDockerrunVersion": 1,
-  "containerDefinitions": [
-    {
-      "name": "asbx-org",
-      "image": "{$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/asbx-org",
-      "hostname": "asbx-org",
-      "essential": true,
-      "memory": 1024,
-      "portMappings": [
-        {
-          "hostPort": 80,
-          "containerPort": 8000
-        }
-      ]
-    }
-  ]
-}
+         "AWSEBDockerrunVersion":"1",
+         "Image":{
+            "Name":"${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org""
+         },
+         "Ports":[
+            {
+               "ContainerPort":80,
+               "HostPort":8000
+            }
+         ]
+      }
