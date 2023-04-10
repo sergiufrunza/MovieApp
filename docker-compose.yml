@@ -5,5 +5,11 @@ services:
    context: ./
   container_name: asbx-org
   image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org
+  environment:
+   - DATABASE_HOST=${DATABASE_HOST}
+   - DATABASE_USER=${DATABASE_USER}
+   - DATABASE_PASS=${DATABASE_PASS}
+   - DATABASE_NAME=${DATABASE_NAME}
+   - DATABASE_PORT=${DATABASE_PORT}
   ports:
    - "8000:80"
