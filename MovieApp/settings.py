@@ -72,12 +72,12 @@ WSGI_APPLICATION = 'MovieApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'HOST': config("DATABASE_HOST"),
+        'HOST': os.environ["DATABASE_HOST"],
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': config("DATABASE_USER"),
-        'PASSWORD': config("DATABASE_PASS"),
-        'NAME': config("DATABASE_NAME"),
-        'PORT': config("DATABASE_PORT")
+        'USER': os.environ["DATABASE_USER"],
+        'PASSWORD': os.environ["DATABASE_PASS"],
+        'NAME': os.environ["DATABASE_NAME"],
+        'PORT': os.environ["DATABASE_PORT"]
     }
 }
 
