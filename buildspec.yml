@@ -8,6 +8,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
+      - export DOCKER_BUILDKIT=0
+      - export COMPOSE_DOCKER_CLI_BUILD=0
       - docker-compose build
   post_build:
     commands:
