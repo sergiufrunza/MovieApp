@@ -17,7 +17,7 @@ WORKDIR /code
 COPY docker/requirements.txt /code/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-COPY docker /code/
+COPY . /code/
 RUN pwd
-RUN ["chmod", "+x", "/docker/docker-entrypoint.sh"]
-ENTRYPOINT ["./docker/docker-entrypoint.sh"]
+RUN ["chmod", "+x", "/code/docker/docker-entrypoint.sh"]
+ENTRYPOINT ["/code/docker/docker-entrypoint.sh"]
