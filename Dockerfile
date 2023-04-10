@@ -1,4 +1,4 @@
-FROM python:3.10-buster
+FROM python:3.10.5
 EXPOSE 8000
 # Nginx
 RUN apt-get update
