@@ -18,6 +18,7 @@ phases:
       - export SECRET_KEY=$SECRET_KEY
       - export DEBUG=$DEBUG
       - export DATABASE=$DATABASE
+      - export ALLOWED_HOSTS=$ALLOWED_HOSTS
       - docker-compose build
   post_build:
     commands:
