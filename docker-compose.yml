@@ -5,8 +5,6 @@ services:
    context: ./
   container_name: asbx-org
   image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org
-  env_file:
-   .env
   environment:
    DATABASE_HOST: ${DATABASE_HOST}
    DATABASE_USER: ${DATABASE_USER}
