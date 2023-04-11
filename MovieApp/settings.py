@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 DEBUG = config("DEBUG", default=1)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(" ")
+SECRET_KEY = config('SECRET_KEY')
 # Application definition
 
 INSTALLED_APPS = [
