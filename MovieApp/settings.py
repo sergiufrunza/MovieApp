@@ -19,11 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ["SECRET_KEY"]
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ["DEBUG"])
-
-ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split()
+DEBUG = int(os.environ.get("DEBUG", default=1))
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ") if os.environ.get('ALLOWED_HOSTS') else ['*']
+ENV = os.environ.get('ENV')
 # Application definition
 
 INSTALLED_APPS = [
@@ -72,12 +70,12 @@ WSGI_APPLICATION = 'MovieApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'HOST': os.environ["DATABASE_HOST"],
+        'HOST': os.environ['DATABASE_HOST'],
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': os.environ["DATABASE_USER"],
-        'PASSWORD': os.environ["DATABASE_PASS"],
-        'NAME': os.environ["DATABASE_NAME"],
-        'PORT': os.environ["DATABASE_PORT"]
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASS'],
+        'NAME': os.environ['DATABASE_NAME'],
+        'PORT': os.environ['DATABASE_PORT']
     }
 }
 
