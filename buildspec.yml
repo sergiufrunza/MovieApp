@@ -8,17 +8,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - export DOCKER_BUILDKIT=0
-      - export COMPOSE_DOCKER_CLI_BUILD=0
-      - export DATABASE_HOST=$DATABASE_HOST
-      - export DATABASE_USER=$DATABASE_USER
-      - export DATABASE_PASS=$DATABASE_PASS
-      - export DATABASE_NAME=$DATABASE_NAME
-      - export DATABASE_PORT=$DATABASE_PORT
-      - export SECRET_KEY=$SECRET_KEY
-      - export DEBUG=$DEBUG
-      - export DATABASE=$DATABASE
-      - export ALLOWED_HOSTS=$ALLOWED_HOSTS
       - docker-compose build
   post_build:
     commands:
