@@ -23,7 +23,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = ['appasbxorg-env.eba-bhdz32gr.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS =os.environ.get("ALLOWED_HOSTS").split(" ")
 # Application definition
 
 INSTALLED_APPS = [
