@@ -4,6 +4,15 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - echo DATABASE_HOST=${DATABASE_HOST} >> .env
+      - echo DATABASE_USER=${DATABASE_USER} >> .env
+      - echo DATABASE_PASS=${DATABASE_PASS} >> .env
+      - echo DATABASE_NAME=${DATABASE_NAME} >> .env
+      - echo DATABASE_PORT=${DATABASE_PORT} >> .env
+      - echo SECRET_KEY=${SECRET_KEY} >> .env
+      - echo DEBUG=${DEBUG} >> .env
+      - echo DATABASE=${DATABASE} >> .env
+      - echo ALLOWED_HOSTS=${ALLOWED_HOSTS} >> .env
   build:
     commands:
       - echo Build started on `date`
