@@ -19,9 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$tqgc^bsypc_r-w%^s4hr2d@wr(9(x(%%f3xjekh3g65o%995w'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = ['appasbxorg-env.eba-bhdz32gr.us-west-2.elasticbeanstalk.com']
 # Application definition
@@ -72,12 +72,12 @@ WSGI_APPLICATION = 'MovieApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'HOST': os.environ["DATABASE_HOST"],
+        'HOST': os.environ.get("DATABASE_HOST"),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'USER': os.environ["DATABASE_USER"],
-        'PASSWORD': os.environ["DATABASE_PASS"],
-        'NAME': os.environ["DATABASE_NAME"],
-        'PORT': os.environ["DATABASE_PORT"]
+        'USER': os.environ.get("DATABASE_USER"),
+        'PASSWORD': os.environ.get("DATABASE_PASS"),
+        'NAME': os.environ.get("DATABASE_NAME"),
+        'PORT': os.environ.get("DATABASE_PORT")
     }
 }
 
