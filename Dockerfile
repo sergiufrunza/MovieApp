@@ -1,4 +1,4 @@
-FROM public.ecr.aws/sam/emulation-python3.9:latest
+FROM python:3.10-slim
 EXPOSE 8000
 # Nginx
 RUN apt-get update
