@@ -1,4 +1,4 @@
-FROM python:3.10-buster
+FROM public.ecr.aws/sam/build-python3.9:1.79.0-20230407185812
 EXPOSE 8000
 # Nginx
 RUN apt-get update
