@@ -12,6 +12,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
+      - export SUPER_USER_NAME=$SUPER_USER_NAME
+      - export SUPER_USER_PASS=$SUPER_USER_PASS
       - docker-compose build
   post_build:
     commands:
