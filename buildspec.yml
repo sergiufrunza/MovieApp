@@ -5,6 +5,7 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - printenv > .env
+      - echo DATABASE_PORT=5432 >> .env
       - echo DEBUG=0 >> .env
       - echo ALLOWED_HOSTS=devasbxapp-env.eba-b9kv8mba.us-west-2.elasticbeanstalk.com >> .env
   build:
