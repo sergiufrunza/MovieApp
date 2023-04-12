@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-DEBUG = config("DEBUG", default=1)
+DEBUG = config("DEBUG")
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(" ")
 SECRET_KEY = config('SECRET_KEY')
 # Application definition
@@ -80,7 +80,7 @@ DATABASES = {
     }
 }
 
-if config("DEBUG") == 0:
+if config('AWS_ACCESS_KEY_ID_BUCKET'):
     AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID_BUCKET')
     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY_BUCKET')
     AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
