@@ -4,14 +4,14 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      - printenv > .env
-      - echo DEBUG=0 >> .env
-      - echo ALLOWED_HOSTS=devasbxapp-env.eba-b9kv8mba.us-west-2.elasticbeanstalk.com >> .env
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker-compose build
+      - printenv > .env
+      - echo DEBUG=0 >> .env
+      - echo ALLOWED_HOSTS=devasbxapp-env.eba-b9kv8mba.us-west-2.elasticbeanstalk.com >> .env
   post_build:
     commands:
       - echo Build completed on `date`
