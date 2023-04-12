@@ -8,10 +8,11 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker-compose build
       - printenv > .env
       - echo DEBUG=0 >> .env
       - echo ALLOWED_HOSTS=devasbxapp-env.eba-b9kv8mba.us-west-2.elasticbeanstalk.com >> .env
+      - docker-compose build
+
   post_build:
     commands:
       - echo Build completed on `date`
