@@ -23,3 +23,5 @@ urllib3
 supervisor
 uwsgi
 psycopg2-binary
+boto3
+django-storages
