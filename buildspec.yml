@@ -3,7 +3,6 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login --region $AWS_DEFAULT_REGION --profile sergiu@7lex.com
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - printenv > .env
       - echo DEBUG=0 >> .env
