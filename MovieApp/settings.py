@@ -79,7 +79,7 @@ DATABASES = {
     }
 }
 
-if config("MODE") == "prod":
+if config("DEBUG") == 20:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     LINODE_BUCKET=config("BUCKET_NAME")
     LINODE_BUCKET_REGION=config("BUCKET_REGION")
