@@ -79,6 +79,25 @@ DATABASES = {
     }
 }
 
+if config("MODE") == "prod":
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    LINODE_BUCKET=config("BUCKET_NAME")
+    LINODE_BUCKET_REGION=config("BUCKET_REGION")
+    LINODE_BUCKET_ACCESS_KEY=config("LINODE_BUCKET_ACCESS_KEY")
+    LINODE_BUCKET_SECRET_KEY=config("LINODE_BUCKET_SECRET_KEY")
+
+
+    AWS_S3_ENDPOINT_URL=f'https://{LINODE_BUCKET_REGION}.linodeobjects.com'
+    AWS_ACCESS_KEY_ID=LINODE_BUCKET_ACCESS_KEY
+    AWS_SECRET_ACCESS_KEY=LINODE_BUCKET_SECRET_KEY
+    AWS_S3_REGION_NAME=LINODE_BUCKET_REGION
+    AWS_S3_USE_SSL=True
+    AWS_STORAGE_BUCKET_NAME=LINODE_BUCKET
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
