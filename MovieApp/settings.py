@@ -24,6 +24,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(" ")
 SECRET_KEY = config('SECRET_KEY')
 # Application definition
 
+SUPER_USER_NAME=config('SUPER_USER_NAME')
+SUPER_USER_PASS=config('SUPER_USER_PASS')
+
 INSTALLED_APPS = [
     'rest_framework' ,
     'moviesite' ,
