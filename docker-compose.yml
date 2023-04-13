@@ -5,8 +5,6 @@ services:
    context: ./
   container_name: asbx-org
   image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org
-  environment:
-   ALLOWED_HOSTS: ${ALLOWED_HOSTS}
   ports:
    - "8000:80"
    - "443:443"
