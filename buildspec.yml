@@ -18,6 +18,5 @@ phases:
       - echo Writing image definitions file...
       - printf '{"AWSEBDockerrunVersion":"1","Image":{"Name":"%s","Update":"true"},"Ports":[{"ContainerPort":8000,"HostPort":80}]}' ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org:latest > Dockerrun.aws.json
       - cat Dockerrun.aws.json
-      - cat .env
 artifacts:
   files: Dockerrun.aws.json
