@@ -15,8 +15,6 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code
 COPY docker/requirements.txt /code/
-RUN pip install boto_rsync
-RUN boto-rsync /path/to/media s3://${AWS_STORAGE_BUCKET_NAME}/media -a ${AWS_ACCESS_KEY_ID} -s ${AWS_SECRET_ACCESS_KEY}
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /code/
