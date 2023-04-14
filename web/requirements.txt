@@ -7,7 +7,6 @@ decorator
 Django
 djangorestframework
 idna
-gunicorn
 imageio
 imageio-ffmpeg
 moviepy
