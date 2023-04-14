@@ -17,7 +17,7 @@ phases:
       - docker-compose push
       - echo Writing image definitions file...
       - printf '{"AWSEBDockerrunVersion":2,"containerDefinitions":[{"name":"web","image":"%s","hostname":"web","memory":2048,"essential":true,"portMappings":[{"hostPort":8000,"containerPort":8000}]},' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/asbx-org > Dockerrun.aws.json
-      - printf '{"name":"nginx","image":"%s","hostname":"nginx","memory":512,"essential":true,"portMappings":[{"hostPort":80,"containerPort":8000}],"links":["web"]}]}' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/app-nginx >> Dockerrun.aws.json
+      - printf '{"name":"nginx","image":"%s","hostname":"nginx","memory":512,"essential":true,"portMappings":[{"hostPort":80,"containerPort":80}],"links":["web"]}]}' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/app-nginx >> Dockerrun.aws.json
       - cat Dockerrun.aws.json
 artifacts:
   files: Dockerrun.aws.json
