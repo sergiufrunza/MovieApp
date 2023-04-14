@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'MovieApp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if config('DEBUG'):
+if DEBUG:
     DATABASES = {
         'default': {
             'HOST': config('DATABASE_HOST'),
@@ -92,7 +92,7 @@ else:
         }
     }
 
-if config('DEBUG'):
+if DEBUG:
     AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID_BUCKET')
     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY_BUCKET')
     AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')

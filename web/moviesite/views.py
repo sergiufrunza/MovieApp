@@ -18,7 +18,7 @@ from .models import *
 
 
 class MainViewHome(DataMixin ,TemplateView):
-    template_name = 'moviesite/templates/moviesite/moviesite.html'
+    template_name = 'moviesite/moviesite.html'
     model = MovieData
 
     def get_context_data(self ,* ,object_list=None ,**kwargs):
@@ -37,7 +37,7 @@ class MainViewHome(DataMixin ,TemplateView):
 
 
 class MovieView(DataMixin ,DetailView):
-    template_name = 'moviesite/templates/moviesite/movie.html'
+    template_name = 'moviesite/movie.html'
     model = Movie
     slug_url_kwarg = 'slug_movie'
     context_object_name = 'movie'
@@ -50,7 +50,7 @@ class MovieView(DataMixin ,DetailView):
 
 
 class CategoriesView(DataMixin ,ListView):
-    template_name = 'moviesite/templates/moviesite/category.html'
+    template_name = 'moviesite/category.html'
     model = Movie
     context_object_name = 'movies'
 
@@ -65,7 +65,7 @@ class CategoriesView(DataMixin ,ListView):
 
 
 class FavoriteView(DataMixin ,ListView):
-    template_name = 'moviesite/templates/moviesite/favorite.html'
+    template_name = 'moviesite/favorite.html'
     model = Movie
     context_object_name = 'movies'
 
@@ -81,7 +81,7 @@ class FavoriteView(DataMixin ,ListView):
 
 
 class ProfileUser(DataMixin ,DetailView):
-    template_name = 'moviesite/templates/moviesite/profile.html'
+    template_name = 'moviesite/profile.html'
     model = UserProfile
     pk_url_kwarg = 'pk'
     context_object_name = 'user'
@@ -94,7 +94,7 @@ class ProfileUser(DataMixin ,DetailView):
 
 class LoginUser(DataMixin ,LoginView):
     form_class = AuthForm
-    template_name = 'moviesite/templates/moviesite/login.html'
+    template_name = 'moviesite/login.html'
 
     def get_context_data(self ,* ,object_list=None ,**kwargs):
         context = super().get_context_data(**kwargs)
@@ -107,7 +107,7 @@ class LoginUser(DataMixin ,LoginView):
 
 class RegisterUser(DataMixin ,CreateView):
     form_class = RegisterUserForm
-    template_name = 'moviesite/templates/moviesite/registrate.html'
+    template_name = 'moviesite/registrate.html'
 
     def get_context_data(self ,* ,object_list=None ,**kwargs):
         context = super().get_context_data(**kwargs)
@@ -126,7 +126,7 @@ class RegisterUser(DataMixin ,CreateView):
 class EditUserProfile(DataMixin ,UpdateView):
     model = UserProfile
     form_class = EditFormProfile
-    template_name = 'moviesite/templates/moviesite/editprofile.html'
+    template_name = 'moviesite/editprofile.html'
 
     def get_context_data(self ,* ,object_list=None ,**kwargs):
         context = super().get_context_data(**kwargs)
