@@ -11,5 +11,7 @@ COPY requirements.txt /web/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /web/
+EXPOSE 80
+CMD ["gunicorn", "--chdir", "MovieApp", "--bind", ":80", "MovieApp.wsgi:application"]
 RUN ["chmod", "+x", "/web/scripts/docker-entrypoint.sh"]
 ENTRYPOINT ["/web/scripts/docker-entrypoint.sh"]
