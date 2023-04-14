@@ -8,8 +8,8 @@ services:
     volumes:
       - static_volume:/web/staticfiles
       - media_volume:/web/mediafiles
-    networks:
-      - nginx_network
+    ports:
+      - "8000:8000"
   nginx:
     build:
       context: ./nginx
@@ -19,15 +19,10 @@ services:
       - static_volume:/web/staticfiles
       - media_volume:/web/mediafiles
     ports:
-      - '80:80'
+      - "80:80"
     depends_on:
       - web
-    networks:
-      - nginx_network
 
-networks:
-  nginx_network:
-    driver: bridge
 volumes:
   static_volume:
   media_volume:
