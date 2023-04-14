@@ -5,4 +5,4 @@ FROM public.ecr.aws/nginx/nginx:1.24-alpine
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Copying our nginx.conf
-COPY nginx.conf /etc/nginx/conf.d
+COPY nginx.conf /etc/nginx/conf.d/default.conf

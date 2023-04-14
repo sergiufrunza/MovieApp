@@ -1,9 +1,10 @@
 FROM  public.ecr.aws/docker/library/python:3.10-buster as web
-
+EXPOSE 8000
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 # Python deps
+
 RUN mkdir /web
 WORKDIR /web
 COPY docker/requirements.txt /web/

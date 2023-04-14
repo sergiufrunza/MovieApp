@@ -11,7 +11,7 @@
      image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/nginx
      # Mapping machine and container ports
      ports:
-      - 1337:80
+      - "80:80"
      depends_on:
       - web
      restart: "on-failure"
@@ -31,6 +31,7 @@
       gunicorn MovieApp.wsgi:application --bind 0.0.0.0:8000"
 
      # Exposing port 8000
-     expose:
-      - 8000
+     ports:
+      - "8000:8000"
+      - "443:443"
      restart: "on-failure"
