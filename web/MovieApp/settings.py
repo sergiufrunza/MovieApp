@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-DEBUG = config('DEBUG', cast=int)
+DEBUG = config('DEBUG')
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(" ")
 SECRET_KEY = config('SECRET_KEY')
 # Application definition
@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'MovieApp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if config('DEBUG',cast=int):
+if config('DEBUG'):
     DATABASES = {
         'default': {
             'HOST': config('DATABASE_HOST'),
@@ -92,7 +92,7 @@ else:
         }
     }
 
-if config('DEBUG',cast=int):
+if config('DEBUG'):
     AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID_BUCKET')
     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY_BUCKET')
     AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
