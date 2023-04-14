@@ -1,4 +1,4 @@
-FROM  public.ecr.aws/docker/library/python:3.10-buster as web
+FROM  public.ecr.aws/docker/library/python:3.10-buster
 EXPOSE 8000
 
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -10,6 +10,6 @@ WORKDIR /web
 COPY requirements.txt /web/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-COPY .. /web/
+COPY . /web/
 RUN ["chmod", "+x", "/web/scripts/docker-entrypoint.sh"]
 ENTRYPOINT ["/web/scripts/docker-entrypoint.sh"]
