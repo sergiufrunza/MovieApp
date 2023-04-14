@@ -1,5 +1,4 @@
 FROM  public.ecr.aws/docker/library/python:3.10-buster
-EXPOSE 8000
 # Nginx
 RUN apt-get update
 RUN apt-get -y install sudo
@@ -9,6 +8,7 @@ RUN apt -y install gettext
 RUN rm /etc/nginx/sites-enabled/default
 COPY nginx/nginx.conf /etc/nginx/sites-enabled
 # Supervisord
+COPY nginx/supervisord.conf /etc/supervisord.conf
 ENV PYTHONUNBUFFERED 1
 # Python deps
 RUN mkdir /web
