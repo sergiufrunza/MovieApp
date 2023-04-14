@@ -5,6 +5,7 @@
       "name": "asbx-org",
       "image": "{$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/asbx-org:latest",
       "hostname": "asbx-org",
+      "memory": 2048,
       "essential": true,
       "portMappings": [
         {
@@ -17,6 +18,7 @@
       "name": "nginx",
       "image": "{$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/nginx:latest",
       "hostname": "nginx",
+      "memory": 512,
       "essential": true,
       "portMappings": [
         {
