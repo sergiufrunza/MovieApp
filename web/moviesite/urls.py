@@ -1,4 +1,5 @@
 from django.urls import path
+from moviesite.views import *
 
 urlpatterns = [
     path('logout/' ,log_out_user ,name='logout') ,
