@@ -1,0 +1,13 @@
+{
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+    "Name": "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 8000,
+      "HostPort": 8000
+    }
+  ]
+}
