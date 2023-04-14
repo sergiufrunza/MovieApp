@@ -20,7 +20,7 @@ services:
       - static_volume:/web/staticfiles
       - media_volume:/web/mediafiles
     ports:
-      - "1337:80"
+      - "80:80"
     depends_on:
       - web
 
