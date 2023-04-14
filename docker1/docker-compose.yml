@@ -1,0 +1,10 @@
+version: '3'
+services:
+ web:
+  build:
+   context: ./
+  container_name: asbx-org
+  image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org
+  ports:
+   - "8000:8000"
+   - "443:443"
