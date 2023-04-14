@@ -14,12 +14,12 @@
 <body>
 <div class="main_wrapper">
     <aside class="left_aside">
-        {% include "moviesite/includes/includes/left_aside.html" %}
+        {% include "moviesite/includes/left_aside.html" %}
     </aside>
 
     <content>
         <header>
-            {% include "moviesite/includes/includes/header.html" %}
+            {% include "moviesite/includes/header.html" %}
         </header>
         <div class="content" id="content">
             {% block content %}
@@ -60,11 +60,11 @@
     </content>
 
     <aside class="right_aside" id="right_aside" {% if request.user.is_authenticated %} style="width: 350px" {% endif %}>
-        {% include "moviesite/includes/includes/right_aside.html" %}
+        {% include "moviesite/includes/right_aside.html" %}
     </aside>
 </div>
 <footer>
-    {% include "moviesite/includes/includes/footer.html" %}
+    {% include "moviesite/includes/footer.html" %}
 </footer>
 </body>
 
