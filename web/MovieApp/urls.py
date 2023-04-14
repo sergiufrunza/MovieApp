@@ -23,7 +23,7 @@ from moviesite.views import FavoriteAPI
 urlpatterns = [
     path('api/favorite/<slug:slug_favorite>/', csrf_exempt(FavoriteAPI.as_view())),
     path('admin/', admin.site.urls),
-    path('', include('web.moviesite.urls')),
+    path('', include('moviesite.urls')),
 ]
 
 
