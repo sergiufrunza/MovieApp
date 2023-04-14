@@ -16,7 +16,7 @@
     },
     {
       "name": "nginx",
-      "image": "{$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/nginx",
+      "image": "{$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/app-nginx",
       "hostname": "nginx",
       "memory": 512,
       "essential": true,
