@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN mkdir /web
 WORKDIR /web
-COPY docker/requirements.txt /web/
+COPY requirements.txt /web/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY .. /web/
