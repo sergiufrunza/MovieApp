@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class MoviesiteConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'web.moviesite'
+    name = 'moviesite'
