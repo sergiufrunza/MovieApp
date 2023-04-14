@@ -11,6 +11,3 @@ COPY docker/requirements.txt /web/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY .. /web/
-RUN pwd
-RUN ["chmod", "+x", "/web/docker/docker-entrypoint.sh"]
-ENTRYPOINT ["/web/docker/docker-entrypoint.sh"]
