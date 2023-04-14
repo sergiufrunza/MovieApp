@@ -5,6 +5,10 @@ services:
       context: ./web
     container_name: asbx-org
     image: '${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org'
+    command: gunicorn MovieApp.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/web/staticfiles
+      - media_volume:/web/mediafiles
     ports:
       - '8000:8000'
       - '443:443'
@@ -13,7 +17,13 @@ services:
       context: ./nginx
     container_name: nginx
     image: '${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/app-nginx'
+    volumes:
+      - static_volume:/web/staticfiles
+      - media_volume:/web/mediafiles
     ports:
       - '80:80'
     depends_on:
       - web
+volumes:
+  static_volume:
+  media_volume:
