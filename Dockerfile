@@ -7,16 +7,16 @@ RUN apt-get -y install nano
 RUN apt-get install -y net-tools nginx
 RUN apt -y install gettext
 RUN rm /etc/nginx/sites-enabled/default
-COPY ../nginx/nginx.conf /etc/nginx/sites-enabled
+COPY nginx/nginx.conf /etc/nginx/sites-enabled
 # Supervisord
 ENV PYTHONUNBUFFERED 1
 # Python deps
 RUN mkdir /web
 WORKDIR /web
-COPY ./requirements.txt /web/
+COPY web/requirements.txt /web/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-COPY . /web/
+COPY web /web/
 RUN pwd
 RUN ["chmod", "+x", "/web/scripts/docker-entrypoint.sh"]
 ENTRYPOINT ["/web/scripts/docker-entrypoint.sh"]
