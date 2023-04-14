@@ -17,4 +17,4 @@ phases:
       - docker-compose push
       - echo Writing image definitions file...
 artifacts:
-  files:
+  files: Dockerrun.aws.json
