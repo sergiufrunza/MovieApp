@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "asbx-org",
-      "image": "{$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/asbx-org:latest",
+      "image": "{$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/asbx-org",
       "hostname": "asbx-org",
       "memory": 2048,
       "essential": true,
@@ -16,7 +16,7 @@
     },
     {
       "name": "nginx",
-      "image": "{$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/nginx:latest",
+      "image": "{$AWS_ACCOUNT_ID}.dkr.ecr.{$AWS_DEFAULT_REGION}.amazonaws.com/nginx",
       "hostname": "nginx",
       "memory": 512,
       "essential": true,
