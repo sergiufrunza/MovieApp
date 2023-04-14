@@ -2,7 +2,5 @@
 FROM public.ecr.aws/nginx/nginx:1.24-alpine
 
 # Removing default nginx.conf
-RUN rm /etc/nginx/conf.d/default.conf
-
-# Copying our nginx.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/sites-enabled/default
+COPY nginx.conf /etc/nginx/sites-enabled
