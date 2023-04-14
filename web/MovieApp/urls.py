@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
+from moviesite.views import FavoriteAPI
 
 urlpatterns = [
     path('api/favorite/<slug:slug_favorite>/', csrf_exempt(FavoriteAPI.as_view())),
