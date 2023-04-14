@@ -1,28 +1,10 @@
 version: '3'
 services:
-  web:
-    build:
-      context: ./web
-    container_name: web
-    image: '${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org'
-    volumes:
-      - static_volume:/web/static
-      - media_volume:/web/media
-    expose:
-      - 8000
-  nginx:
-    build:
-      context: ./nginx
-    container_name: nginx
-    image: '${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/app-nginx'
-    volumes:
-      - static_volume:/web/stati
-      - media_volume:/web/media
-    ports:
-      - "80:80"
-    depends_on:
-      - web
-
-volumes:
-  static_volume:
-  media_volume:
+ web:
+  build:
+   context: ./web
+  container_name: asbx-org
+  image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/asbx-org
+  ports:
+   - "8000:80"
+   - "443:443"
