@@ -16,7 +16,7 @@ WORKDIR /web
 COPY ./requirements.txt /web/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-COPY web /web/
+COPY . /web/
 RUN pwd
 RUN ["chmod", "+x", "/web/scripts/docker-entrypoint.sh"]
 ENTRYPOINT ["/web/scripts/docker-entrypoint.sh"]
