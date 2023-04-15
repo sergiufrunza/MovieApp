@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 
-from web.MovieApp import settings
+from MovieApp import settings
 
 
 class Command(BaseCommand):
