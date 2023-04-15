@@ -1,7 +1,9 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 
-from MovieApp import settings
+from MovieApp.settings import SUPER_USER_PASS, SUPER_USER_NAME
+
+
 
 
 class Command(BaseCommand):
@@ -12,8 +14,8 @@ class Command(BaseCommand):
     """
 
     def add_arguments(self, parser):
-        parser.add_argument("--user", default=settings.SUPER_USER_NAME)
-        parser.add_argument("--password", default=settings.SUPER_USER_PASS)
+        parser.add_argument("--user", default=SUPER_USER_NAME)
+        parser.add_argument("--password", default=SUPER_USER_PASS)
         parser.add_argument("--email", default="admin@example.com")
 
     def handle(self, *args, **options):
